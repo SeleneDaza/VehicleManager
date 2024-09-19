@@ -2,6 +2,8 @@ package co.edu.uptc.views.VehicleManagerMainFrame;
 
 import javax.swing.JTable;
 import javax.swing.JPanel;
+
+import co.edu.uptc.pojos.VehicleRecord;
 import co.edu.uptc.utilities.DesignButton;
 import co.edu.uptc.utilities.SimpleList;
 import co.edu.uptc.views.GlobalView;
@@ -108,44 +110,44 @@ public class VehiclePanel extends JPanel{
 
      public void loadModelData() {
         
-        SimpleList<SimpleList> modelData = greenWheelsView.getPresenter().organizeModel();
-        modelTableModel.setRowCount(0);
-    
-        SimpleList<String> models = modelData.get(0);   
-        SimpleList<Integer> counts = modelData.get(1);
-    
-        for (int i = 0; i < models.size(); i++) {
-            Object[] rowData = { models.get(i), counts.get(i) }; 
-            modelTableModel.addRow(rowData);  
-        }
-    }
+        SimpleList<VehicleRecord> modelData = greenWheelsView.getPresenter().organizeModel();
+        modelTableModel.setRowCount(0);  
+
+        for (int i = 0; i < modelData.size; i++) {
+        VehicleRecord record = modelData.get(i);  
+
+        Object[] rowData = {record.getName(), record.getTotalRecord()};
+        
+        modelTableModel.addRow(rowData);
+        } 
+     }
 
     public void loadManufacturerData() {
         
-        SimpleList<SimpleList> manufacturerData = greenWheelsView.getPresenter().organizeMake();
-        manufacturerTableModel.setRowCount(0);
-    
-        SimpleList<String> manufacturers = manufacturerData.get(0);   
-        SimpleList<Integer> counts = manufacturerData.get(1);
-    
-        for (int i = 0; i < manufacturers.size(); i++) {
-            Object[] rowData = { manufacturers.get(i), counts.get(i) }; 
-            manufacturerTableModel.addRow(rowData);  
+        SimpleList<VehicleRecord> manufacturerData = greenWheelsView.getPresenter().organizeMake();
+        manufacturerTableModel.setRowCount(0);  
+
+        for (int i = 0; i < manufacturerData.size; i++) {
+        VehicleRecord record = manufacturerData.get(i);  
+
+        Object[] rowData = {record.getName(), record.getTotalRecord()};
+        
+        manufacturerTableModel.addRow(rowData);
         }
     }
 
     public void loadRangeData() {
         
-        SimpleList<SimpleList> rangeData = greenWheelsView.getPresenter().organizeRange();
-        rangeTableModel.setRowCount(0);
-    
-        SimpleList<String> ranges = rangeData.get(0);   
-        SimpleList<Integer> counts = rangeData.get(1);
-    
-        for (int i = 0; i < ranges.size(); i++) {
-            Object[] rowData = { ranges.get(i), counts.get(i) }; 
-            rangeTableModel.addRow(rowData);  
-        }
+        SimpleList<VehicleRecord> rangeData = greenWheelsView.getPresenter().organizeRange();
+        rangeTableModel.setRowCount(0);  
+
+        for (int i = 0; i < rangeData.size; i++) {
+        VehicleRecord record = rangeData.get(i);  
+
+        Object[] rowData = {record.getName(), record.getTotalRecord()};
+        
+        rangeTableModel.addRow(rowData);
+    }
     }
 
     private void showModelTable() {

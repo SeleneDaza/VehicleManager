@@ -21,6 +21,7 @@ public class LoadingDialog extends JDialog {
         setSize(300, 250);
         setLocationRelativeTo(getParent());
         setBackground(GlobalView.DIALOG_BACKGROUND);
+        setUndecorated(true);
 
         ImageIcon loadingGif = new ImageIcon(propertiesService.getKeyValue("gifPath"));
 

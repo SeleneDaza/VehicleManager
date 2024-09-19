@@ -1,6 +1,7 @@
 package co.edu.uptc.presenters;
 
 import co.edu.uptc.interfaces.VehicleManagerInterface;
+import co.edu.uptc.pojos.VehicleRecord;
 import co.edu.uptc.utilities.SimpleList;
 import lombok.Getter;
 
@@ -26,32 +27,32 @@ public class Presenter implements VehicleManagerInterface.Presenter{
     }
 
     @Override
-    public SimpleList<SimpleList> organizeState() {
+    public SimpleList<VehicleRecord> organizeState() {
       return model.organizeState();
     }
 
     @Override
-    public SimpleList<SimpleList> organizeCounty() {
-      return organizeCounty();
+    public SimpleList<VehicleRecord> organizeCounty() {
+      return model.organizeCounty();
     }
 
     @Override
-    public SimpleList<SimpleList> organizeCity() {
+    public SimpleList<VehicleRecord> organizeCity() {
       return model.organizeCity();
     }
 
     @Override
-    public SimpleList<SimpleList> organizeModel() {
+    public SimpleList<VehicleRecord> organizeModel() {
       return model.organizeModel();
     }
 
     @Override
-    public SimpleList<SimpleList> organizeMake() {
+    public SimpleList<VehicleRecord> organizeMake() {
       return model.organizeMake();
     }
 
     @Override
-    public SimpleList<SimpleList> organizeRange() {
+    public SimpleList<VehicleRecord> organizeRange() {
       return model.organizeRange();
     }
 

@@ -16,6 +16,5 @@ public class Main {
         presenter.setModel(model);
         presenter.setView(view);
         view.begin();
-       // view.showData();
     }
 }

@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import co.edu.uptc.interfaces.VehicleManagerInterface;
@@ -126,17 +127,18 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
     }
     
     private void loadData() {
-        LoadingDialog loadingDialog = new LoadingDialog(this);
+        if(this.continueDialog()){
+            LoadingDialog loadingDialog = new LoadingDialog(this);
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() throws Exception {
                 presenter.loadData(); 
-                //geographicJPanel.loadStateData();
-                // geographicJPanel.loadCountyData();
-                // geographicJPanel.loadCityData();
-                // vehicJPanel.loadModelData();
-                vehicJPanel.loadManufacturerData();
-                // vehicJPanel.loadRangeData();
+                // geographicJPanel.loadStateData(); --
+                geographicJPanel.loadCountyData();
+                // geographicJPanel.loadCityData(); --
+                // vehicJPanel.loadModelData(); --
+                // vehicJPanel.loadManufacturerData(); --
+                // vehicJPanel.loadRangeData(); --
                 return null;
             }
 
@@ -149,7 +151,13 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
 
         worker.execute();
         loadingDialog.showLoading();
+        }
 }
+
+    public boolean continueDialog(){
+        int respons = JOptionPane.showConfirmDialog(null,"Would you like to continue?", "Continue",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return respons == JOptionPane.YES_OPTION;
+    }
 
 
     private void showPanel(String panelName) {

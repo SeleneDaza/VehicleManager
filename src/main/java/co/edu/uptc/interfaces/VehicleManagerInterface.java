@@ -1,6 +1,7 @@
 package co.edu.uptc.interfaces;
 
 import co.edu.uptc.utilities.SimpleList;
+import co.edu.uptc.pojos.VehicleRecord;
 
 public interface VehicleManagerInterface {
 
@@ -9,17 +10,17 @@ public interface VehicleManagerInterface {
 
         public void loadData();
 
-        public SimpleList<SimpleList> organizeState();
+        public SimpleList<VehicleRecord> organizeState();
 
-        public SimpleList<SimpleList> organizeCounty();
+        public SimpleList<VehicleRecord> organizeCounty();
 
-        public SimpleList<SimpleList> organizeCity();
+        public SimpleList<VehicleRecord> organizeCity();
 
-        public SimpleList<SimpleList> organizeModel();
+        public SimpleList<VehicleRecord> organizeModel();
 
-        public SimpleList<SimpleList> organizeMake();
+        public SimpleList<VehicleRecord> organizeMake();
 
-        public SimpleList<SimpleList> organizeRange();
+        public SimpleList<VehicleRecord> organizeRange();
 
         public void resetData();
     }
@@ -37,17 +38,17 @@ public interface VehicleManagerInterface {
 
         public void loadData();
         
-        public SimpleList<SimpleList> organizeState();
+        public SimpleList<VehicleRecord> organizeState();
 
-        public SimpleList<SimpleList> organizeCounty();
+        public SimpleList<VehicleRecord> organizeCounty();
 
-        public SimpleList<SimpleList> organizeCity();
+        public SimpleList<VehicleRecord> organizeCity();
 
-        public SimpleList<SimpleList> organizeModel();
+        public SimpleList<VehicleRecord> organizeModel();
 
-        public SimpleList<SimpleList> organizeMake();
+        public SimpleList<VehicleRecord> organizeMake();
 
-        public SimpleList<SimpleList> organizeRange();
+        public SimpleList<VehicleRecord> organizeRange();
 
         public void resetData();
         

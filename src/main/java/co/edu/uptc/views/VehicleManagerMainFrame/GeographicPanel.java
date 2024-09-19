@@ -3,6 +3,8 @@ package co.edu.uptc.views.VehicleManagerMainFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import co.edu.uptc.pojos.VehicleRecord;
 import co.edu.uptc.utilities.DesignButton;
 import co.edu.uptc.utilities.SimpleList;
 import co.edu.uptc.views.GlobalView;
@@ -79,43 +81,42 @@ public class GeographicPanel extends JPanel {
 
     public void loadStateData() {
         
-        SimpleList<SimpleList> stateData = greenWheelsView.getPresenter().organizeState();
-        stateTableModel.setRowCount(0);
-    
-        SimpleList<String> states = stateData.get(0);   
-        SimpleList<Integer> counts = stateData.get(1);
-    
-        for (int i = 0; i < states.size(); i++) {
-            Object[] rowData = { states.get(i), counts.get(i) }; 
-            stateTableModel.addRow(rowData);  
-        }
+        SimpleList<VehicleRecord> stateData = greenWheelsView.getPresenter().organizeState();
+        stateTableModel.setRowCount(0);  
+
+        for (int i = 0; i < stateData.size; i++) {
+        VehicleRecord record = stateData.get(i);  
+
+        Object[] rowData = {record.getName(), record.getTotalRecord()};
+        
+        stateTableModel.addRow(rowData);
+    }
     }
 
     public void loadCountyData(){
-        SimpleList<SimpleList> countyData = greenWheelsView.getPresenter().organizeCounty();
-        countyTableModel.setRowCount(0);
+        SimpleList<VehicleRecord> countyData = greenWheelsView.getPresenter().organizeCounty();
+        countyTableModel.setRowCount(0);  
 
-        SimpleList<String> states = countyData.get(0);
-        SimpleList<String> countys = countyData.get(1);
-        SimpleList<Integer> counts = countyData.get(2);
+        for (int i = 0; i < countyData.size; i++) {
+        VehicleRecord record = countyData.get(i);  
 
-        for (int i = 0; i < countys.size; i++) {
-            Object[] rowData = {states.get(i), countys.get(i), counts.get(i)};
-            countyTableModel.addRow(rowData);
-        }
+        Object[] rowData = {record.getExtraInfo(), record.getName(), record.getTotalRecord()};
+        
+        countyTableModel.addRow(rowData);
+    }
     }
 
     public void loadCityData(){
-        SimpleList<SimpleList> cityData = greenWheelsView.getPresenter().organizeCity();
-        cityTableModel.setRowCount(0);
+        SimpleList<VehicleRecord> cityData = greenWheelsView.getPresenter().organizeCity();
+        cityTableModel.setRowCount(0);  
 
-        SimpleList<String> citys = cityData.get(0);
-        SimpleList<Integer> counts = cityData.get(1);
+        for (int i = 0; i < cityData.size; i++) {
+        VehicleRecord record = cityData.get(i);  
 
-        for (int i = 0; i < citys.size; i++) {
-            Object[] rowData = {citys.get(i), counts.get(i)};
-            cityTableModel.addRow(rowData);
-        }
+        Object[] rowData = {record.getName(), record.getTotalRecord()};
+        
+        cityTableModel.addRow(rowData);
+    }
     }
     
     public void initCountyTable() {

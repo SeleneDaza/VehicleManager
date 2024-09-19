@@ -11,7 +11,7 @@ Este proyecto desarrolla un sistema de información para analizar datos sobre ve
     Versión: 0.1.0
 
 ## Requisitos
-    Java 17
+    Java 17, no superior
 
 ## Patron de diseño
     Patron Modelo Vista Presentador (MVP)

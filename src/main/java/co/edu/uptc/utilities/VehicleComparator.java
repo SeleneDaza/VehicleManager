@@ -2,20 +2,28 @@ package co.edu.uptc.utilities;
 
 import java.util.Comparator;
 
+import co.edu.uptc.pojos.VehicleRecord;
+
 public class VehicleComparator {
 
-    public static Comparator<String> stateComparator = new Comparator<String>() {
+    public static Comparator<VehicleRecord> stateComparator = new Comparator<VehicleRecord>() {
         @Override
-        public int compare(String vehicleOne, String vehicleTwo) {
-        return vehicleTwo.compareTo(vehicleOne);
+        public int compare(VehicleRecord one, VehicleRecord two) {
+        // TODO Auto-generated method stub
+            int result = two.getExtraInfo().compareTo(one.getExtraInfo());
+            if (result == 0) {
+                result = Integer.compare(two.getTotalRecord(), one.getTotalRecord());
+            }
+            return result;
         }
     };
 
-    public static Comparator<Integer> countComparator = new Comparator<Integer>() {
+    public static Comparator<VehicleRecord> countComparator = new Comparator<VehicleRecord>() {
 
         @Override
-        public int compare(Integer one, Integer two){
-            return Integer.compare(one, two);
+        public int compare(VehicleRecord one, VehicleRecord two){
+
+            return Integer.compare(one.getTotalRecord(), two.getTotalRecord());
         }
     };
 }
