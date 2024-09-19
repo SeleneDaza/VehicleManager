@@ -131,11 +131,11 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
             @Override
             protected Void doInBackground() throws Exception {
                 presenter.loadData(); 
-                // geographicJPanel.loadStateData();
+                //geographicJPanel.loadStateData();
                 // geographicJPanel.loadCountyData();
                 // geographicJPanel.loadCityData();
                 // vehicJPanel.loadModelData();
-                // vehicJPanel.loadManufacturerData();
+                vehicJPanel.loadManufacturerData();
                 // vehicJPanel.loadRangeData();
                 return null;
             }

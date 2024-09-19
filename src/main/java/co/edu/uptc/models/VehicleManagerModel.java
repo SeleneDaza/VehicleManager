@@ -63,7 +63,6 @@ public class VehicleManagerModel implements VehicleManagerInterface.Model {
         return null;
     }
 
-    //TODO: Arreglar city
     @Override
     public SimpleList<SimpleList> organizeCity() {
         SimpleList<SimpleList> aux = this.countInfo("city");
@@ -71,11 +70,15 @@ public class VehicleManagerModel implements VehicleManagerInterface.Model {
         int count = 0;
         SimpleList<String> city = new SimpleList<String>();
         SimpleList<String> total = new SimpleList<String>();
-        do {
+    
+        int maxRecords = Integer.parseInt(aux.get(1).get(0).toString());
+    
+        while (count < aux.get(1).size() && Integer.parseInt(aux.get(1).get(count).toString()) == maxRecords) {
             city.add(aux.get(0).get(count).toString());
             total.add(aux.get(1).get(count).toString());
-        } while (aux.get(1).get(count)==aux.get(1).get(count+1));
-
+            count++;
+        }
+    
         showCityInfo = new SimpleList<>();
         showCityInfo.add(city);
         showCityInfo.add(total);
