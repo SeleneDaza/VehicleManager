@@ -22,8 +22,9 @@ public class MySort<T>{
     }
 
     private int partition(List<T> list, List<T> stringList, Comparator<T> comparator, int low, int high) {
-        T pivot = list.get(high);
-        T pivotString = stringList.get(high);
+        int randomIndex = low + random.nextInt(high - low + 1);
+        T pivot = list.get(randomIndex);
+        T pivotString = stringList.get(randomIndex);
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
