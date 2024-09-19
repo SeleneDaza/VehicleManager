@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import co.edu.uptc.utilities.DesignButton;
+import co.edu.uptc.utilities.SimpleList;
 import co.edu.uptc.views.GlobalView;
 import lombok.Getter;
 
@@ -76,6 +77,47 @@ public class GeographicPanel extends JPanel {
         stateScrollPane.setVisible(false); 
     }
 
+    public void loadStateData() {
+        
+        SimpleList<SimpleList> stateData = greenWheelsView.getPresenter().organizeState();
+        stateTableModel.setRowCount(0);
+    
+        SimpleList<String> states = stateData.get(0);   
+        SimpleList<Integer> counts = stateData.get(1);
+    
+        for (int i = 0; i < states.size(); i++) {
+            Object[] rowData = { states.get(i), counts.get(i) }; 
+            stateTableModel.addRow(rowData);  
+        }
+    }
+
+    public void loadCountyData(){
+        SimpleList<SimpleList> countyData = greenWheelsView.getPresenter().organizeCounty();
+        countyTableModel.setRowCount(0);
+
+        SimpleList<String> states = countyData.get(0);
+        SimpleList<String> countys = countyData.get(1);
+        SimpleList<Integer> counts = countyData.get(2);
+
+        for (int i = 0; i < countys.size; i++) {
+            Object[] rowData = {states.get(i), countys.get(i), counts.get(i)};
+            countyTableModel.addRow(rowData);
+        }
+    }
+
+    public void loadCityData(){
+        SimpleList<SimpleList> cityData = greenWheelsView.getPresenter().organizeCity();
+        cityTableModel.setRowCount(0);
+
+        SimpleList<String> citys = cityData.get(0);
+        SimpleList<Integer> counts = cityData.get(1);
+
+        for (int i = 0; i < citys.size; i++) {
+            Object[] rowData = {citys.get(i), counts.get(i)};
+            cityTableModel.addRow(rowData);
+        }
+    }
+    
     public void initCountyTable() {
         String[] countyColumnNames = {"State", "County", "Number of Records"};
         countyTableModel = new DefaultTableModel(countyColumnNames, 0) {

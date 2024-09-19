@@ -7,13 +7,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import co.edu.uptc.interfaces.VehicleManagerInterface;
-import co.edu.uptc.interfaces.VehicleManagerInterface.Presenter;
 import co.edu.uptc.utilities.DesignButton;
 import co.edu.uptc.views.GlobalView;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class GreenWheelsView extends JFrame implements VehicleManagerInterface.View {
 
     private VehicleManagerInterface.Presenter presenter;
@@ -21,8 +23,8 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
     private JPanel buttonsPanel;
     private Container contentJPanel;
     private InitialPanel menuJPanel;
-    private JPanel vehicJPanel;
-    private JPanel geographicJPanel;
+    private VehiclePanel vehicJPanel;
+    private GeographicPanel geographicJPanel;
     private DesignButton loadDataButton;
     private DesignButton toMenu;
     private DesignButton toVehicle;
@@ -34,8 +36,9 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
         createContentJPanel();
         createMenuPanel();
         createVehicJPanel();
-        createGeographicJPanel();
         createButtons();
+        createVehicJPanel();
+        createGeographicJPanel();
     }
 
     @Override
@@ -92,7 +95,7 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
         loadDataButton = new DesignButton("Load Data", true);
         loadDataButton.setForeground(GlobalView.PRIMARY_BTN_TEXT);
         loadDataButton.setBounds(60, 430, 350, 50);
-        loadDataButton.addActionListener(e -> showPanel("Vehicle"));
+        loadDataButton.addActionListener(e -> loadData());
         loadDataButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loadDataButton.setBackground(GlobalView.PRIMARY_BTN_BACKGROUND);
         menuJPanel.addToAside(loadDataButton);
@@ -118,6 +121,33 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
         buttonsPanel.add(toGeo);
         contentJPanel.setVisible(true);
     }
+    
+    private void loadData() {
+        LoadingDialog loadingDialog = new LoadingDialog(this);
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                presenter.loadData(); 
+                // geographicJPanel.loadStateData();
+                // geographicJPanel.loadCountyData();
+                // geographicJPanel.loadCityData();
+                // vehicJPanel.loadModelData();
+                // vehicJPanel.loadManufacturerData();
+                // vehicJPanel.loadRangeData();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                loadingDialog.hideLoading(); 
+                showPanel("Vehicle"); 
+            }
+        };
+
+        worker.execute();
+        loadingDialog.showLoading();
+}
+
 
     private void showPanel(String panelName) {
         CardLayout cardLayout = (CardLayout) contentJPanel.getLayout();
@@ -126,8 +156,11 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
     }
 
     @Override
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(VehicleManagerInterface.Presenter presenter) {
         this.presenter = presenter;
     }
 
+    public VehicleManagerInterface.Presenter getPresenter(){
+        return this.presenter;
+    }
 }
