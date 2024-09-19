@@ -127,4 +127,9 @@ public class VehicleManagerModel implements VehicleManagerInterface.Model {
         return countData;
     }
 
+    @Override
+    public void resetData() {
+        getDataList().clear();
+    }
+
 }

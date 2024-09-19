@@ -54,5 +54,10 @@ public class Presenter implements VehicleManagerInterface.Presenter{
     public SimpleList<SimpleList> organizeRange() {
       return model.organizeRange();
     }
+
+    @Override
+    public void resetData() {
+      model.resetData();
+    }
     
 }

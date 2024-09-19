@@ -171,4 +171,10 @@ public class GeographicPanel extends JPanel {
         revalidate();
         repaint();
     }
+
+    public void clearData() {
+        stateTableModel.setRowCount(0);
+        countyTableModel.setRowCount(0);
+        cityTableModel.setRowCount(0);
+    }
 }

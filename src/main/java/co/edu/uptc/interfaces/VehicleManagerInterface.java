@@ -20,6 +20,8 @@ public interface VehicleManagerInterface {
         public SimpleList<SimpleList> organizeMake();
 
         public SimpleList<SimpleList> organizeRange();
+
+        public void resetData();
     }
 
     public interface View {
@@ -46,6 +48,8 @@ public interface VehicleManagerInterface {
         public SimpleList<SimpleList> organizeMake();
 
         public SimpleList<SimpleList> organizeRange();
+
+        public void resetData();
         
     }
 

@@ -172,4 +172,10 @@ public class VehiclePanel extends JPanel{
         repaint();
     }
 
+    public void clearData() {
+        modelTableModel.setRowCount(0);;
+        manufacturerTableModel.setRowCount(0);
+        rangeTableModel.setRowCount(0);
+    }
+
 }

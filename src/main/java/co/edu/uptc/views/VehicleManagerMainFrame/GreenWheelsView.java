@@ -103,7 +103,10 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
         toMenu = new DesignButton("Log Out",false);
         toMenu.setForeground(GlobalView.PRIMARY_BTN_TEXT);
         toMenu.setBounds(15, 600, 200, 50);
-        toMenu.addActionListener(e -> showPanel("Menu"));
+        toMenu.addActionListener((e -> {
+            resetAllData(); 
+            showPanel("Menu");
+        }));
         buttonsPanel.add(toMenu);
 
         toVehicle = new DesignButton("Vehicle Data Analisis",true);
@@ -153,6 +156,14 @@ public class GreenWheelsView extends JFrame implements VehicleManagerInterface.V
         CardLayout cardLayout = (CardLayout) contentJPanel.getLayout();
         cardLayout.show(contentJPanel, panelName);
         buttonsPanel.setVisible(!panelName.equals("Menu"));
+    }
+
+    private void resetAllData() {
+        vehicJPanel.clearData(); 
+        geographicJPanel.clearData(); 
+        if (presenter != null) {
+            presenter.resetData(); 
+        }
     }
 
     @Override
